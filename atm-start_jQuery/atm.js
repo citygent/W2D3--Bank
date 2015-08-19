@@ -46,17 +46,26 @@ function withdrawCurrent() {
 }
 
 function balanceProtection(overdraft){
-  console.log(overdraft);
+  if (overdraft <= savingsAccBalance) { // checks to see if there's enough dolla dolla bill y'all.
+    savingsAccBalance = (savingsAccBalance-parseFloat(overdraft)); // subtracts from the balance variable
+    $('#balance2').html('$'+savingsAccBalance); //updates the display value of savings accordingly.
+  } else {
+    console.log('Insufficient funds'); // make this better if time allows.
+  }
 }
 
 function depositSavings() {
   var input = $('input#amount2').val(); //grabs user input from box
   savingsAccBalance = (savingsAccBalance+parseFloat(input)); // adds it the global variable.
-  $('#balance2').html('$'+savingsAccBalance);
+  $('#balance2').html('$'+savingsAccBalance); 
 }
 
 function withdrawSavings() {
   var input = $('input#amount2').val(); //grabs user input from box  
-  savingsAccBalance = (savingsAccBalance-parseFloat(input)); // subtracts from the balance variable
-  $('#balance2').html('$'+savingsAccBalance); //updates the display value.
+  if (input <= savingsAccBalance) { // checks to see if there's enough dolla dolla bill y'all.
+    savingsAccBalance = (savingsAccBalance-parseFloat(input)); // subtracts from the balance variable
+    $('#balance2').html('$'+savingsAccBalance); //updates the display value of savings.
+  } else { 
+    console.log('Insufficient funds'); // make this better if time allows.
+  }
 }
