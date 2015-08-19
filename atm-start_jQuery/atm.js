@@ -37,4 +37,21 @@ function depositSavings() {
   $('#balance2').html('$'+savingsAccBalance);
 }
 
+function withdrawCurrent() {
+  var input = $('input#amount1').val();
+  currentAccBalance = (currentAccBalance-parseFloat(input));
+  if (currentAccBalance < 0) {
+    withdrawSavings(Math.abs(currentAccBalance));
+
+  } else {
+  $('#balance1').html('$'+currentAccBalance); //updates the display value.
+  inTheRed(); // checks if in the red/0.
+  }
+}
+
+
+
+
+
+
 
