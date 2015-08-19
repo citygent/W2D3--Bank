@@ -10,7 +10,7 @@ function setup() {
   $('input#deposit1').on('click', depositCurrent);
   $('input#deposit2').on('click', depositSavings);
   $('input#withdraw1').on('click', withdrawCurrent);
-  // $('input#withdraw2').on('click', withdrawSavings);
+  $('input#withdraw2').on('click', withdrawSavings);
 }
 
 function inTheRed() {
@@ -38,6 +38,7 @@ function withdrawCurrent() {
     currentAccBalance = currentAccBalance + Math.abs(currentAccBalance); // puts balance back to 0.
     $('#balance1').html('$'+currentAccBalance); //updates the display value.
     inTheRed(); // checks if in the red/0.
+    console.log("currentAccBalance: "+currentAccBalance);
   } else { 
   $('#balance1').html('$'+currentAccBalance); //updates the display value.
   inTheRed(); // checks if in the red/0.
@@ -48,24 +49,14 @@ function balanceProtection(overdraft){
   console.log(overdraft);
 }
 
-
 function depositSavings() {
   var input = $('input#amount2').val(); //grabs user input from box
   savingsAccBalance = (savingsAccBalance+parseFloat(input)); // adds it the global variable.
   $('#balance2').html('$'+savingsAccBalance);
 }
 
-
-
-// function depositSavings() {
-//   var input = $('input#amount2').val(); //grabs user input from box
-//   savingsAccBalance = (savingsAccBalance+parseFloat(input)); // adds it the global variable.
-//   $('#balance2').html('$'+savingsAccBalance);
-// }
-
-
-
-
-
-
-
+function withdrawSavings() {
+  var input = $('input#amount2').val(); //grabs user input from box  
+  savingsAccBalance = (savingsAccBalance-parseFloat(input)); // subtracts from the balance variable
+  $('#balance2').html('$'+savingsAccBalance); //updates the display value.
+}
