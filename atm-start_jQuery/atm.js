@@ -13,7 +13,7 @@ function setup() {
   $('input#withdraw2').on('click', withdrawSavings);
 }
 
-function inTheRed() {
+function inTheRed() { 
   if (currentAccBalance === 0) {
     $('#balance1').css({"background-color": "#F52F4F"});
     $('#account1.account').css({"background-color": "#FFFFFF"});
