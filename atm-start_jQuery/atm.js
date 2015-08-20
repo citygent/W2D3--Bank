@@ -32,16 +32,21 @@ function depositCurrent() {
 
 function withdrawCurrent() {
   var input = $('input#amount1').val();
-  currentAccBalance = (currentAccBalance-parseFloat(input));
-  if (currentAccBalance < 0) {
-    balanceProtection(Math.abs(currentAccBalance)); // Sends the 'overdraft' amount to balance protection
-    currentAccBalance = currentAccBalance + Math.abs(currentAccBalance); // puts balance back to 0.
+  if (input <= (currentAccBalance+savingsAccBalance)) {
+    currentAccBalance = (currentAccBalance-parseFloat(input));
+    if (currentAccBalance < 0) {
+      balanceProtection(Math.abs(currentAccBalance)); // Sends the 'overdraft' amount to balance protection
+      currentAccBalance = currentAccBalance + Math.abs(currentAccBalance); // puts balance back to 0.
+      $('#balance1').html('$'+currentAccBalance); //updates the display value.
+      inTheRed(); // checks if in the red/0.
+      console.log("currentAccBalance: "+currentAccBalance);
+    } else { 
     $('#balance1').html('$'+currentAccBalance); //updates the display value.
     inTheRed(); // checks if in the red/0.
-    console.log("currentAccBalance: "+currentAccBalance);
-  } else { 
-  $('#balance1').html('$'+currentAccBalance); //updates the display value.
-  inTheRed(); // checks if in the red/0.
+    }
+  }
+  else {
+    console.log('Insufficient Funds');
   }
 }
 
